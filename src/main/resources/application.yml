@@ -1,0 +1,44 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: creative-automation-pipeline
+
+# ── Pipeline Configuration ────────────────────────────────────────────────────
+pipeline:
+  # Image provider: mock | openai | stability | firefly
+  image-provider: mock
+
+  # LLM provider for prompt enrichment: mock | openai | anthropic
+  llm-provider: mock
+
+  # Storage: local | s3 | azure
+  storage-provider: local
+  output-dir: outputs
+
+  # API Keys (override via environment variables in production)
+  openai-api-key: ${OPENAI_API_KEY:}
+  anthropic-api-key: ${ANTHROPIC_API_KEY:}
+  stability-api-key: ${STABILITY_API_KEY:}
+  firefly-client-id: ${FIREFLY_CLIENT_ID:}
+  firefly-client-secret: ${FIREFLY_CLIENT_SECRET:}
+
+  # AWS S3
+  aws-bucket: ${AWS_BUCKET:}
+  aws-region: ${AWS_REGION:us-east-1}
+
+# ── Actuator ─────────────────────────────────────────────────────────────────
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  level:
+    com.adobe.creative: DEBUG
+    root: INFO

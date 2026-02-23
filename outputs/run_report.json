@@ -1,0 +1,21 @@
+{
+  "campaignId" : "DEMO_2026_Q1",
+  "totalAssets" : 18,
+  "passed" : 18,
+  "failed" : 0,
+  "durationSeconds" : 3.787,
+  "results" : [ {
+    "productId" : "eco_moisturizer",
+    "region" : "US",
+    "aspectRatio" : "instagram_square",
+    "outputPath" : "outputs/eco_moisturizer/US/instagram_square.png",
+    "compliance" : {
+      "productId" : "eco_moisturizer",
+      "region" : "US",
+      "aspectRatio" : "instagram_square",
+      "passed" : true,
+      "warnings" : [ ],
+      "errors" : [ ]
+    },
+    "durationMs" : 162,
+    "generatedAt"

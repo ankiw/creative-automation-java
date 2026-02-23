@@ -1,0 +1,44 @@
+campaign_id: DEMO_2026_Q1
+campaign_name: Spring Product Launch Campaign
+target_audience: Millennials and Gen Z
+output_dir: outputs
+
+products:
+  - id: eco_moisturizer
+    name: Eco Glow Moisturizer
+    category: Skincare
+    tagline: Radiance from nature
+    brand_colors:
+      primary: "#2EC4B6"
+      secondary: "#FFFFFF"
+      accent: "#FF9F1C"
+
+  - id: energy_drink
+    name: Spark Energy Drink
+    category: Beverage
+    tagline: Unleash your potential
+    brand_colors:
+      primary: "#FF006E"
+      secondary: "#FFBE0B"
+      accent: "#3A86FF"
+
+markets:
+  - region: US
+    locale: en_US
+    campaign_message: "Shop now and save 20%!"
+    prohibited_words: [cure, miracle, guaranteed]
+
+  - region: UK
+    locale: en_GB
+    campaign_message: "Order today - Limited stock!"
+    prohibited_words: [cure, miracle]
+
+  - region: DE
+    locale: de_DE
+    campaign_message: "Jetzt bestellen und sparen!"
+    prohibited_words: [Heilung, Wunder]
+
+aspect_ratios:
+  - { name: instagram_square, width: 1080, height: 1080, platform: Instagram }
+  - { name: instagram_story,  width: 1080, height: 1920, platform: Instagram }
+  - { name: facebook_feed,    width: 1200, height: 628,  platform: Facebook }

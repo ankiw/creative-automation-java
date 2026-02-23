@@ -1,0 +1,11 @@
+.DS_Store
+.idea/
+.vscode/
+
+# Maven/Java build output
+target/
+*.class
+*.log
+
+# Local cache
+.cache/
