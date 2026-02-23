@@ -9,3 +9,7 @@ target/
 
 # Local cache
 .cache/
+
+# Local docs not for remote
+INTERVIEW_CHEAT_SHEET.md
+PROJECT_DOCUMENTATION.md
