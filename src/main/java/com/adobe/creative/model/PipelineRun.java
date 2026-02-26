@@ -31,8 +31,8 @@ public class PipelineRun {
         System.out.println("\n" + "=".repeat(64));
         System.out.printf("  Campaign Run  : %s%n", campaignId);
         System.out.printf("  Assets        : %d%n", totalAssets);
-        System.out.printf("  Compliance ✅  : %d%n", passed);
-        System.out.printf("  Compliance ❌  : %d%n", failed);
+        System.out.printf("  Compliance    : %d%n", passed);
+        System.out.printf("  Compliance   : %d%n", failed);
         System.out.printf("  Duration      : %.1fs%n", durationSeconds);
         System.out.println("=".repeat(64));
         results.forEach(r -> {
