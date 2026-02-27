@@ -1,6 +1,6 @@
 package com.adobe.creative.api;
 
-import jakarta.validation.constraints.NotBlank;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 /**
@@ -8,14 +8,16 @@ import lombok.Data;
  * The caller can either provide the YAML brief inline or reference a file path.
  */
 @Data
+@Schema(description = "Pipeline run request - provide either briefYaml or briefFilePath")
+@ValidBriefRequest
 public class RunPipelineRequest {
 
-    /** Inline YAML brief (mutually exclusive with briefFilePath). */
+    @Schema(description = "Inline YAML campaign brief content", example = "campaign_id: DEMO_2026_Q1\ncampaign_name: Spring Launch\n...")
     private String briefYaml;
 
-    /** Path to a YAML brief file on the server (mutually exclusive with briefYaml). */
+    @Schema(description = "Path to YAML brief file on server", example = "config/campaign_brief.yaml")
     private String briefFilePath;
 
-    /** Override output directory (optional). */
+    @Schema(description = "Override output directory (optional)", example = "outputs")
     private String outputDir;
 }

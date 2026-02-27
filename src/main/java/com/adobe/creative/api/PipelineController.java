@@ -4,6 +4,12 @@ import com.adobe.creative.model.CampaignBrief;
 import com.adobe.creative.model.PipelineRun;
 import com.adobe.creative.orchestrator.PipelineOrchestrator;
 import com.adobe.creative.parser.CampaignBriefParser;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -44,6 +50,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/pipeline")
 @RequiredArgsConstructor
+@Tag(name = "Creative Automation Pipeline", description = "AI-driven social media ad campaign generation")
 public class PipelineController {
 
     private final PipelineOrchestrator orchestrator;
@@ -52,6 +59,8 @@ public class PipelineController {
     // ── GET /api/pipeline/health ──────────────────────────────────────────
 
     @GetMapping("/health")
+    @Operation(summary = "Health check", description = "Returns service health and version info")
+    @ApiResponse(responseCode = "200", description = "Service is healthy")
     public ResponseEntity<Map<String, Object>> health() {
         return ResponseEntity.ok(Map.of(
             "status",    "UP",
@@ -80,7 +89,10 @@ public class PipelineController {
      * </pre>
      */
     @PostMapping(value = "/run", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<PipelineRun> run(@RequestBody RunPipelineRequest request) {
+    @Operation(summary = "Run pipeline", description = "Execute full creative generation pipeline")
+    @ApiResponse(responseCode = "200", description = "Pipeline completed successfully")
+    @ApiResponse(responseCode = "400", description = "Invalid request")
+    public ResponseEntity<PipelineRun> run(@Valid @RequestBody RunPipelineRequest request) {
         log.info("POST /api/pipeline/run – briefFilePath={}, hasInlineYaml={}",
                 request.getBriefFilePath(), request.getBriefYaml() != null);
 
@@ -106,6 +118,8 @@ public class PipelineController {
      * </pre>
      */
     @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @Operation(summary = "Upload and run", description = "Upload YAML brief file and run pipeline")
+    @ApiResponse(responseCode = "200", description = "Upload and execution successful")
     public ResponseEntity<PipelineRun> upload(@RequestPart("brief") MultipartFile file)
             throws IOException {
 
@@ -132,7 +146,10 @@ public class PipelineController {
      * Useful for a "pre-flight" check before committing to a full pipeline run.
      */
     @PostMapping(value = "/validate", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Map<String, Object>> validate(@RequestBody RunPipelineRequest request) {
+    @Operation(summary = "Validate brief", description = "Validate campaign brief without generating images")
+    @ApiResponse(responseCode = "200", description = "Brief is valid")
+    @ApiResponse(responseCode = "400", description = "Invalid brief")
+    public ResponseEntity<Map<String, Object>> validate(@Valid @RequestBody RunPipelineRequest request) {
         log.info("POST /api/pipeline/validate");
         CampaignBrief brief = parseBrief(request);
 

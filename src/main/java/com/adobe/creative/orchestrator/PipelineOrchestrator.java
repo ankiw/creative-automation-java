@@ -5,6 +5,7 @@ import com.adobe.creative.config.PipelineConfig;
 import com.adobe.creative.model.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -55,6 +56,7 @@ public class PipelineOrchestrator {
     private final ComplianceChecker complianceChecker;
     private final PipelineConfig    config;
     private final ObjectMapper      objectMapper = new ObjectMapper()
+            .registerModule(new JavaTimeModule())
             .enable(SerializationFeature.INDENT_OUTPUT);
 
     /**

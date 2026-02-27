@@ -10,6 +10,15 @@ target/
 # Local cache
 .cache/
 
+# Docker
+.docker/
+
+# Local outputs
+outputs/
+
+# Environment variables
+.env
+
 # Local docs not for remote
 INTERVIEW_CHEAT_SHEET.md
 PROJECT_DOCUMENTATION.md

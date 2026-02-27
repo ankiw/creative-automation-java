@@ -15,20 +15,40 @@ Marketing teams need to create dozens of ad variations for campaigns across mult
 ## Features
 
 - 🚀 **REST API** for programmatic access
+- 📚 **OpenAPI/Swagger Documentation** at `/swagger-ui.html`
 - 🎨 **AI Image Generation** (OpenAI, Firefly, Stability AI)
 - 🌍 **Multi-Market Support** with localized messaging
 - ✅ **Compliance Validation** for market regulations
 - 📊 **Audit Reports** in JSON format
 - 🔌 **Pluggable Architecture** for easy provider swaps
 - 🏥 **Health Monitoring** via Spring Actuator
+- 🐳 **Docker Support** with multi-stage builds
+- 🔄 **CI/CD Pipeline** with GitHub Actions
+- ✨ **Request Validation** with bean validation
 
 ## Quick Start
 
 ### Prerequisites
 - Java 17+
 - Maven 3.6+
+- Docker (optional, for containerized deployment)
 
-### Build & Run
+### Option 1: Run with Docker (Recommended)
+
+```bash
+# Build and start with docker-compose
+docker-compose up -d
+
+# View logs
+docker-compose logs -f
+
+# Stop
+docker-compose down
+```
+
+The application starts on `http://localhost:8080`
+
+### Option 2: Build & Run Locally
 
 ```bash
 # Set Java 17
@@ -80,6 +100,11 @@ aspect_ratios:
   - { name: instagram_story,  width: 1080, height: 1920, platform: Instagram }
   - { name: facebook_feed,    width: 1200, height: 628,  platform: Facebook }
 ```
+
+## API Documentation
+
+**Interactive API docs:** http://localhost:8080/swagger-ui.html
+**OpenAPI spec:** http://localhost:8080/v3/api-docs
 
 ## API Endpoints
 
