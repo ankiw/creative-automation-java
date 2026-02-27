@@ -58,15 +58,22 @@ export PATH="$JAVA_HOME/bin:$PATH"
 # Build
 mvn clean package -DskipTests
 
-# Run
+# Run on default port 8080
 java -jar target/creative-automation-1.0.0.jar
+
+# Or run on a different port (e.g., 8081 if 8080 is in use)
+java -jar target/creative-automation-1.0.0.jar --server.port=8081
 ```
 
-The application starts on `http://localhost:8080`
+The application starts on `http://localhost:8080` (or your specified port)
 
 Alternatively, run with Maven:
 ```bash
+# Default port 8080
 mvn spring-boot:run
+
+# Custom port (recommended if 8080 is in use)
+mvn spring-boot:run -Dspring-boot.run.arguments=--server.port=8081
 ```
 
 ### Configuration
@@ -105,6 +112,8 @@ aspect_ratios:
 
 **Interactive API docs:** http://localhost:8080/swagger-ui.html
 **OpenAPI spec:** http://localhost:8080/v3/api-docs
+
+> **💡 Note:** If port 8080 is already in use, replace `8080` with your chosen port (e.g., `8081`)
 
 ## API Endpoints
 
@@ -353,10 +362,28 @@ Current implementation includes Docker, CI/CD, and comprehensive testing. Additi
 ## Troubleshooting
 
 ### Port Already in Use
+
+If you see `Port 8080 is already in use`, you have two options:
+
+**Option 1: Stop the conflicting application**
 ```bash
-# Use a different port
-java -jar target/creative-automation-1.0.0.jar --server.port=8081
+# Find what's using port 8080
+lsof -i :8080
+
+# Kill the process (use the PID from above)
+kill -9 <PID>
 ```
+
+**Option 2: Run on a different port (Recommended)**
+```bash
+# Run on port 8081 with JAR
+java -jar target/creative-automation-1.0.0.jar --server.port=8081
+
+# Or with Maven
+mvn spring-boot:run -Dspring-boot.run.arguments=--server.port=8081
+```
+
+Then access at `http://localhost:8081`
 
 ### Java Version Issues
 ```bash
