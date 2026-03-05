@@ -12,13 +12,18 @@ Marketing teams need to create dozens of ad variations for campaigns across mult
 
 **Example:** 2 products × 3 markets × 3 formats = **18 unique creatives** in **~7 seconds**
 
+## Project Documentation
+
+- Full documentation with architecture and flow diagrams: `docs/PROJECT_DOCUMENTATION.md`
+
 ## Features
 
 - 🚀 **REST API** for programmatic access
 - 📚 **OpenAPI/Swagger Documentation** at `/swagger-ui.html`
 - 🎨 **AI Image Generation** (OpenAI, Firefly, Stability AI)
+- 🤖 **LLM Integration** for AI-powered ad copy & content generation
 - 🌍 **Multi-Market Support** with localized messaging
-- ✅ **Compliance Validation** for market regulations
+- ✅ **Compliance Validation** for market regulations (rule-based + AI-powered)
 - 📊 **Audit Reports** in JSON format
 - 🔌 **Pluggable Architecture** for easy provider swaps
 - 🏥 **Health Monitoring** via Spring Actuator
@@ -114,6 +119,42 @@ aspect_ratios:
 **OpenAPI spec:** http://localhost:8080/v3/api-docs
 
 > **💡 Note:** If port 8080 is already in use, replace `8080` with your chosen port (e.g., `8081`)
+
+## LLM & AI Features 🤖
+
+The pipeline now includes comprehensive LLM integration for AI-powered content:
+
+### Ad Copy Generation
+```bash
+curl -X POST http://localhost:8080/api/llm/copy/generate \
+  -H "Content-Type: application/json" \
+  -d '{"product": {...}, "market": {...}, "tone": "professional"}'
+```
+
+### Creative Variations (A/B Testing)
+```bash
+curl -X POST http://localhost:8080/api/llm/copy/variations \
+  -H "Content-Type: application/json" \
+  -d '{"product": {...}, "market": {...}, "numVariations": 3}'
+```
+
+### Image Prompt Enhancement
+```bash
+curl -X POST http://localhost:8080/api/llm/prompt/enhance \
+  -H "Content-Type: application/json" \
+  -d '{"product": {...}, "platform": "Instagram"}'
+```
+
+### AI-Powered Compliance Analysis
+```bash
+curl -X POST http://localhost:8080/api/llm/compliance/analyze \
+  -H "Content-Type: application/json" \
+  -d '{"copy": "Your ad text", "market": {...}}'
+```
+
+**Full LLM Documentation:** [docs/LLM_INTEGRATION.md](docs/LLM_INTEGRATION.md)
+
+---
 
 ## API Endpoints
 
